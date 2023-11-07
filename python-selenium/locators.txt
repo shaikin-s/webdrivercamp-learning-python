@@ -1,0 +1,44 @@
+0. Find Headers
+Write an XPath that collects all the header links here ebay 
+//header//a[starts-with(@href, 'https://')]
+
+1. Find filter sections
+Write an XPath that collects left navigation blocks here ebay / shoes
+//ul[@class="x-refine__left__nav"]//h3
+
+2. Now make it dynamic
+Modify the XPath from task #1 to make it dynamic:
+So we can select a specific section based on the header of the section
+//some_xpath..."Brand" - would point to Brand section
+//ul[@class="x-refine__left__nav"]//h3[text()="Brand"]
+
+3. Add the checkboxes
+Modify the XPath from task #2 to select specific checkboxes of the specific section
+//some_xpath..."Brand"..."adidas" - would point to Brand section to checkbox named adidas
+//same_xpath..."Color"..."Blue" - would point to Color section to checkbox named blue
+//ul[@class="x-refine__left__nav"]//li[@class="x-refine__main__list "]//input[@aria-label="Blue"]
+
+4. Make it case insensitive
+Write an XPath to collect all items here ebay / shoes
+Add an option to select an item by title
+This XPath should work with passing a title in lower case only
+//a[@data-interactions]//span[@role]//text()[contains(translate(.,'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 'ADIDAS HARDEN VOL. 7 BASKETBALL SHOES - IE9249 - NEW - MANY SIZES - AUTHENTIC')]
+
+5. Pause it
+Write an XPath to collect the links in the dropdown My eBay here ebay / shoes
+To see the links pause the page when dropdown is open
+When you work with the XPath - the dropdown should not close
+As the answer to this question - write how you pause the page next to XPath
+//ul[@id='gh-ul-nav']//a
+Go to DevTools > Sources tab, hover over mouse on the menu "My eBay" and press F8 key on the keyboard
+
+5. Give me what I want
+Go here ebay / watches 
+Find an XPath to collect watches that are:
+$20 < price < $200
+5.0 out of 5 stars and reviews count >= 10
+Free shipping
+Are on Sale: 20% 0ff and more
+Note: It should be one single XPath to complete the task
+//div[contains(@class, 's-item__detail s-item__detail--primary') and contains(.//span[@class='s-item__price'], '$') and number(translate(substring-after(.//span[@class='s-item__price'], '$'), '.')) > 20 and number(translate(substring-after(.//span[@class='s-item__price'], '$'), '.')) < 200 and .//span[@class='x-star-rating' and .//span[@class='clipped' and contains(., '5.0 out of 5 stars.')]] and .//span[@class='s-item__reviews-count' and number(translate(., ',', '')) >= 10 and .//span[@class='s-item__shipping s-item__logisticsCost' and contains(., 'Free International Shipping')] and .//span[@class='s-item__discount' and contains(.//span[@class='BOLD'], '20% off and more')]
+
